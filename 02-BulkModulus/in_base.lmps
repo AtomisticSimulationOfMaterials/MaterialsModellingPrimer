@@ -1,0 +1,46 @@
+#---------------------------------------------------------------------------------------------------
+# Initilise important features of simulation
+#---------------------------------------------------------------------------------------------------
+units 		metal			# Use metals units (Ang, ps, eV, Pa, etc.)
+dimension 	3			# Run the simulation in three dimensions
+boundary 	p p p			# Use periodic boundaries in all three dimensions
+atom_style 	atomic			# Simulate "atomic" particles, i.e. point masses
+
+#---------------------------------------------------------------------------------------------------
+# Set up a box of atoms
+#---------------------------------------------------------------------------------------------------
+variable 		size equal NCELLS			# Define a variable for convenience
+
+# Specify a fcc lattice and constant
+variable a equal  ALATT
+lattice custom   1.0     &
+        a1      $a      0.0     0.0     &
+        a2      0.0     $a      0.0     &
+        a3      0.0     0.0     $a      &
+        basis   0.0     0.0     0.0     &
+        basis   0.5     0.5     0.0     &
+        basis   0.5     0.0     0.5     &
+        basis   0.0     0.5     0.5
+
+region		box block 0 ${size} 0 ${size} 0 ${size}		# Define a cubic region of space
+create_box	1 box					        # Create a box spanning this region
+create_atoms	1 box						# Fill this box with atoms
+
+#---------------------------------------------------------------------------------------------------
+# Define how the forces between the atoms will be modelled
+#---------------------------------------------------------------------------------------------------
+pair_style 	PAIRSTYLE			# Define the type of potential to be used (here an EAM type)
+pair_coeff * * POTENTIAL Al		        # Read in the potential definition and assign to all atoms
+
+#---------------------------------------------------------------------------------------------------
+# Specify what information to write out
+#---------------------------------------------------------------------------------------------------
+thermo_style custom step etotal pxx pyy pzz lx ly lz	# Variables to write out
+thermo 1						# Frequency to write out information
+
+#---------------------------------------------------------------------------------------------------
+# Minimise the energy of the system
+#---------------------------------------------------------------------------------------------------
+min_style 	cg					# Use a conjugate gradient minimisation algorithm
+minimize 	0.0 1.0e-6 1000 10000			# Run the energy minimisation with the defined success
+								#criteria and maximum number of iterations
