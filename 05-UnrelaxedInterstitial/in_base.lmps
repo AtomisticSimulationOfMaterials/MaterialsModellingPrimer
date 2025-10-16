@@ -1,0 +1,58 @@
+#---------------------------------------------------------------------------------------------------
+# Initilise important features of simulation
+#---------------------------------------------------------------------------------------------------
+atom_modify     map array
+units 		metal			# Use metals units (Ang, ps, eV, Pa, etc.)
+dimension 	3				# Run the simulation in three dimensions
+boundary 	p p p			# Use periodic boundaries in all three dimensions
+atom_style 	atomic			# Simulate "atomic" particles, i.e. point masses
+
+#---------------------------------------------------------------------------------------------------
+# Set up a box of atoms
+#---------------------------------------------------------------------------------------------------
+variable        size equal NCELLS		# Define a variable for convenience
+
+# Specify a fcc lattice and constant
+variable a equal  ALATT
+variable a4 equal $a/4.0
+lattice custom   1.0     &
+        a1      $a      0.0     0.0     &
+        a2      0.0     $a      0.0     &
+        a3      0.0     0.0     $a      &
+        basis   0.0     0.0     0.0     &
+        basis   0.5     0.5     0.0     &
+        basis   0.5     0.0     0.5     &
+        basis   0.0     0.5     0.5
+
+region		box block 0 ${size} 0 ${size} 0 ${size}		# Define a cubic region of space
+create_box	1 box					        # Create a box spanning this region
+create_atoms	1 box						# Fill this box with atoms
+
+create_atoms 1 single ${a4} ${a4} ${a4} units box               # Insert interstitial atom
+displace_atoms all move DISP DISP DISP units box		# Shift all the atoms in the box (this
+							        #  		 is for convenience in analysis)
+#---------------------------------------------------------------------------------------------------
+# Define how the forces between the atoms will be modelled
+#---------------------------------------------------------------------------------------------------
+pair_style 	PAIRSTYLE			# Define the type of potential to be used (here an EAM type)
+pair_coeff * * POTENTIAL Al		        # Read in the potential definition and assign to all atoms
+
+#---------------------------------------------------------------------------------------------------
+# Specify what information to write out
+#---------------------------------------------------------------------------------------------------
+compute disp all displace/atom 					# Ask lammps to record the atom displacements
+compute peatom all pe/atom
+
+thermo_style custom step atoms etotal pxx pyy pzz lx ly lz	# Variables to write out
+thermo_modify format 3 %20.12f				                # Print total energy to 10 decimal places
+thermo 100							        # Frequency to write out information
+
+
+dump 1 all custom 1000 dump.* id type x y z c_disp[1] c_disp[2] c_disp[3] c_peatom # Write out atom positions
+											
+#---------------------------------------------------------------------------------------------------
+# Output energy energy of the system by relaxing the atom coordinates
+#---------------------------------------------------------------------------------------------------
+fix 1 all nve
+timestep 0.001
+run 0

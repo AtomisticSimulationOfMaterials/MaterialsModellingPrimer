@@ -1,0 +1,30 @@
+# --------------------------------------------- Initilisation
+units metal
+dimension 3
+boundary p p p
+atom_style atomic
+
+# --------------------------------------------- Read crystal details
+# Read in supercell (box size and shape and atom positions)
+read_data lammps.txt
+
+# --------------------------------------------- Setup force model
+# Assign potential to atoms
+pair_style PAIRSTYLE
+pair_coeff * * POTENTIAL Al
+
+# --------------------------------------------- Setup output options
+# Set simulation level output
+thermo_style custom step pe lx ly lz pxx pyy pzz fmax fnorm
+thermo 1
+
+# Set per-atom output
+dump 2 all custom 250 snapshot.* id type x y z fx fy fz
+
+# --------------------------------------------- Define and run statics calculation
+# Set up minimisation conditions
+fix 1 all box/relax aniso 0.0 vmax 0.001
+min_style 	cg
+minimize 	0.0 1.0e-6 1000 5000		
+
+
