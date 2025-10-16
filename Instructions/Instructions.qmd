@@ -1,0 +1,62 @@
+---
+title: "Instructions for modelling primer"
+execute:
+  echo: false
+jupyter: python3
+format: html
+---
+
+## Introduction
+To support the Modelling Primer session we have provided a set of simple modelling exercises that introduce some key concepts common to much materials modelling practice. We will illustrate these concepts using classical molecular dynamics simulations. All of these simulations will be run via Google's Colab platform
+
+If you haven't already got a google account, please sign up for one now.
+
+## Setting up Google colab
+
+THe first step is to navigate to the [github repository for the session](https://github.com/AtomisticSimulationOfMaterials/MaterialsModellingPrimer)
+
+You should see something like in @fig-repo. 
+
+![](images/repo.png){#fig-repo width=8in}
+
+RMake sure you are viewing `ReadMe.md` and right-click the badge circled in the figure and select `open in new tab`. This will open a Colab tab and you should then see something like @fig-colab_open_00.
+
+![](images/colab_open_00.png){#fig-colab_open_00 width=6in}
+
+Select `00-GettingGoing.ipynb`. You'll be asked a couple of questions. Confirm you want to proceed you'll then see the notebook in Colab as in @fig-colab1
+
+![](images/colab1.png){#fig-colab1 width=5.5in}
+
+If you click the file icon as shown in @fig-colab1 this will open your folder structure and you should see something like @fig-colab2.
+
+![](images/colab2.png){#fig-colab2 width=7in}
+
+The next step is to run the two code cells in this notebook. Click on the first code cell and then hit `shift + return`. You'll be asked to sign in to your Google account as in @fig-colab_signin.
+
+![](images/colab_signin.png){#fig-colab_signin width=4in}
+
+Of the various permissions, you should only need to select those permissions that are obviously relevant to accessing your files on Google drive. You may need to hit the refresh button in the sidebar (@fig-colab3) but you should then see that `drive` now appears.
+
+![](images/colab3.png){#fig-colab3 width=3in}
+
+Execute the second code cell in the notebook (by clicking on it then hitting `shift + return`). This will clone the repository of files for the exercises into your Google drive. You should now be able to find all the files for the session under `drive/MyDrive` as in @fig-colab4 (my Google drive also has a lot of clutter in it).
+
+![](images/colab4.png){#fig-colab4 width=4in}
+
+## The first exercise
+
+Now return to your browser tab for the github repository (if you've lost that tab, just use the link at the top of the page again). Right-click on the "Open in Colab" badge (see  @fig-colab_open_00) and choose to open in a new tab. Go to the newly opened tab and click on `01-LatticeParameters/01-LatticeParameters.ipynb` as circled in @fig-colab_open_01.
+
+![](images/colab_open_01.png){#fig-colab_open_01 width=6in}
+
+You are now ready to work through this notebook as discussed in the session.
+
+## The remaining exercises
+
+As indicated in your session, you should now go through the exrecises in the following notebooks using the same approach as for `01-LatticeParameters.ipynb`. The remaining notebooks are:
+
+* `02-BulkModulus/02-Calculate_bulk_modulus.ipynb`
+* `03-VacancyFormation/03-Calculate_vacancy_formation.ipynb`
+* `04-GrainBoundary/.ipynb_checkpoints/01-Build_simple_block-checkpoint.ipynb`
+* `04-GrainBoundary/04-GrainBoundary.ipynb`
+* `05-UnrelaxedInterstitial/05-Calculate_unrelaxed_interstitial.ipynb`
