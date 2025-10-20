@@ -13,17 +13,17 @@ If you haven't already got a google account, please sign up for one now.
 
 ## Setting up Google colab
 
-THe first step is to navigate to the [github repository for the session](https://github.com/AtomisticSimulationOfMaterials/MaterialsModellingPrimer)
+The first step is to navigate to the [github repository for the session](https://github.com/AtomisticSimulationOfMaterials/MaterialsModellingPrimer)
 
 You should see something like in @fig-repo. 
 
-![](images/repo.png){#fig-repo width=8in}
+![](images/repo.png){#fig-repo width=6in}
 
-RMake sure you are viewing `ReadMe.md` and right-click the badge circled in the figure and select `open in new tab`. This will open a Colab tab and you should then see something like @fig-colab_open_00.
+Make sure you are viewing `ReadMe.md` and right-click the badge circled in the figure and select `open in new tab`. This will open a Colab tab and you should then see something like @fig-colab_open.
 
-![](images/colab_open_00.png){#fig-colab_open_00 width=6in}
+![](images/colab_open.png){#fig-colab_open width=6in}
 
-Select `00-GettingGoing.ipynb`. You'll be asked a couple of questions. Confirm you want to proceed you'll then see the notebook in Colab as in @fig-colab1
+Select `XX-CombinedExercises.ipynb`. You'll be asked a couple of questions. Confirm you want to proceed you'll then see the notebook in Colab as in @fig-colab1
 
 ![](images/colab1.png){#fig-colab1 width=5.5in}
 
@@ -41,22 +41,26 @@ Of the various permissions, you should only need to select those permissions tha
 
 Execute the second code cell in the notebook (by clicking on it then hitting `shift + return`). This will clone the repository of files for the exercises into your Google drive. You should now be able to find all the files for the session under `drive/MyDrive` as in @fig-colab4 (my Google drive also has a lot of clutter in it).
 
-![](images/colab4.png){#fig-colab4 width=4in}
+![](images/colab4.png){#fig-colab4 width=3in}
 
-## The first exercise
+Run the next three code cells (see @fig-colab5). These cells:
 
-Now return to your browser tab for the github repository (if you've lost that tab, just use the link at the top of the page again). Right-click on the "Open in Colab" badge (see  @fig-colab_open_00) and choose to open in a new tab. Go to the newly opened tab and click on `01-LatticeParameters/01-LatticeParameters.ipynb` as circled in @fig-colab_open_01.
+* Install the lammps molecular dynamics software (and a module that will help us read the output)
+* Load the python modules that we will need for the exercises
+* Define a function we will us a lot in the exercises.
 
-![](images/colab_open_01.png){#fig-colab_open_01 width=6in}
+![](images/colab5.png){#fig-colab5 width=5in}
 
-You are now ready to work through this notebook as discussed in the session.
+## The exercises
 
-## The remaining exercises
+All that ermains now is to work through the exercises in the rest of the notebook. I'll let you know the right point in the lecture to run each exercise.
 
-As indicated in your session, you should now go through the exrecises in the following notebooks using the same approach as for `01-LatticeParameters.ipynb`. The remaining notebooks are:
+Note that the exercises will be run in the folders:
 
-* `02-BulkModulus/02-Calculate_bulk_modulus.ipynb`
-* `03-VacancyFormation/03-Calculate_vacancy_formation.ipynb`
-* `04-GrainBoundary/.ipynb_checkpoints/01-Build_simple_block-checkpoint.ipynb`
-* `04-GrainBoundary/04-GrainBoundary.ipynb`
-* `05-UnrelaxedInterstitial/05-Calculate_unrelaxed_interstitial.ipynb`
+* `02-BulkModulus/`
+* `03-VacancyFormation/`
+* `04-GrainBoundary/`
+* `04-GrainBoundary/`
+* `05-UnrelaxedInterstitial/`
+
+You can ignore the notebooks in these folders (they reproduce the contents of the current notebook, `XX-CombinedExercises.ipynb`, but for one exercise at a time).
